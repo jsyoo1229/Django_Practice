@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
+from django.urls import reverse
 
 articles = {
     'sports': 'sports page',
@@ -20,10 +21,12 @@ def simple_view(request):
 def add(request, num1, num2):
     add_result = num1 + num2
     result = f"{num1} + {num2} = {add_result}"
+
     return HttpResponse(str(result))
 
-def num_page_view(request, num_page)
-    topic_list = list(articles.keys())
-    topic = topic_list[num_page]
-    return HttpResponseRedirect(topic)
+def num_page_view(request, num_page):
+    topics_list = list(articles.keys())
+    topic = topics_list[num_page]
+   
+    return HttpResponseRedirect(reverse('topic-page', args = [topic]))
 
