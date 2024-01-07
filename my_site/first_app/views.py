@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http.response import HttpResponse, HttpResponseNotFound, Http404
+from django.http.response import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
 
 articles = {
     'sports': 'sports page',
@@ -21,6 +21,12 @@ def add(request, num1, num2):
     add_result = num1 + num2
     result = f"{num1} + {num2} = {add_result}"
     return HttpResponse(str(result))
+
+def num_page_view(request, num_page):
+    topics_list = list(articles.keys())
+    topic = topics_list[num_page]
+
+    return HttpResponseRedirect(topic)
 
 
 # Create your views here.
